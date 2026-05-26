@@ -1,0 +1,49 @@
+==================== Training Configuration ====================
+dataset: ML1m
+hiddenSize: 100
+epoch: 20
+batch_size: 32
+lr: 0.001
+lr_dc: 0.1
+lr_dc_step: 3
+l2: 1e-05
+n_layers: 2
+n_heads: 2
+dropout_local: 0.2
+max_len: 200
+mask_prob: 0.2
+patience: 3
+rgrec_weight: 0.6
+===============================================================
+Found pre-trained model. Loading...
+
+=== RGRec Evaluation Phase ===
+RGRec Nudge Weight (w): 0.6
+
+========================= BASE MODEL (SASRec) =========================
+Total Users Evaluated: 6035
+----------------------------------------
+Metric       | Average Score
+----------------------------------------
+Recall@10    | 0.1775      
+MRR@10       | 0.0632      
+Div@10       | 0.4337      
+Recall@20    | 0.2688      
+MRR@20       | 0.0693      
+Div@20       | 0.3232      
+=======================================================
+
+
+========================= RGRec (w=0.6) =========================
+Total Users Evaluated: 6035
+----------------------------------------
+Metric       | Average Score
+----------------------------------------
+Recall@10    | 0.1007      
+MRR@10       | 0.0373      
+Div@10       | 0.2788      
+Recall@20    | 0.2330      
+MRR@20       | 0.0460      
+Div@20       | 0.2979      
+=======================================================
+

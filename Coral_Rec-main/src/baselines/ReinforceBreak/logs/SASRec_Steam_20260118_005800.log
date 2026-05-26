@@ -1,0 +1,23 @@
+==================== Training Configuration ====================
+dataset: Steam
+hiddenSize: 100
+epoch: 20
+batch_size: 32
+lr: 0.001
+lr_dc: 0.1
+lr_dc_step: 8
+l2: 1e-05
+n_layers: 2
+n_heads: 2
+dropout_local: 0.2
+max_len: 200
+mask_prob: 0.2
+validation: False
+valid_portion: 0.1
+patience: 3
+n_communities: 5
+controllable_steps: 1
+===============================================================
+Loading data...
+
+=== Phase 1: Training Base RS (Filter Bubble Formation) ===

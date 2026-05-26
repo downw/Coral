@@ -1,0 +1,40 @@
+==================== Training Configuration ====================
+dataset: ML1m
+hiddenSize: 100
+epoch: 20
+batch_size: 32
+lr: 0.001
+lr_dc: 0.1
+lr_dc_step: 3
+l2: 1e-05
+n_layers: 2
+n_heads: 2
+dropout_local: 0.2
+max_len: 200
+mask_prob: 0.2
+validation: False
+valid_portion: 0.1
+patience: 3
+lambda_tradeoff: 1.0
+===============================================================
+Found pre-trained model at checkpoints/sasrec_best_model_ML1m.pth. Loading...
+
+=== TD-VAE-CF Evaluation (Emb-Sim) ===
+Lambda Trade-off: 1.0
+
+==================== TD-VAE-CF Stratified Risk Analysis (Emb-Sim Calibration) ====================
+Total Moments: 632148
+Penalty Lambda: 1.0
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1138     | 0.1236       | 0.1303       | 0.1348      
+Recall@10    | 0.1925     | 0.2147       | 0.2281       | 0.2355      
+MRR@5        | 0.0568     | 0.0602       | 0.0629       | 0.0646      
+MRR@10       | 0.0670     | 0.0721       | 0.0757       | 0.0778      
+Sim@5        | 0.4943     | 0.5482       | 0.5617       | 0.5792      
+Sim@10       | 0.4868     | 0.5422       | 0.5560       | 0.5737      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+

@@ -1,0 +1,23 @@
+==================== Training Configuration ====================
+dataset: ML1m
+hiddenSize: 100
+epoch: 20
+batch_size: 128
+lr: 0.001
+lr_dc: 0.1
+lr_dc_step: 3
+l2: 1e-05
+n_layers: 2
+n_heads: 2
+dropout_local: 0.2
+max_len: 200
+mask_prob: 0.2
+validation: False
+valid_portion: 0.1
+patience: 3
+Ib: 1.0
+lambda_b: 0.01
+===============================================================
+Found pre-trained model at ../../checkpoints/sasrec_best_model_ML1m.pth. Loading...
+
+=== Evaluation Phase: Stratified Risk Analysis ===

@@ -1,0 +1,642 @@
+==================== Training Configuration ====================
+dataset: ML1m
+hiddenSize: 100
+epoch: 20
+batch_size: 16
+lr: 0.001
+lr_dc: 0.1
+lr_dc_step: 8
+l2: 1e-05
+n_layers: 2
+n_heads: 2
+dropout_local: 0
+max_len: 200
+mask_prob: 0.2
+validation: False
+valid_portion: 0.1
+patience: 3
+n_communities: 5
+controllable_steps: 30
+===============================================================
+Loading data...
+
+=== Phase 1: Training Base RS (Filter Bubble Formation) ===
+
+========================= MODEL PERFORMANCE (Ep4) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1438     | 0.1616       | 0.1788       | 0.1722      
+Recall@10    | 0.2330     | 0.2643       | 0.2848       | 0.2848      
+MRR@5        | 0.0750     | 0.0822       | 0.0944       | 0.0903      
+MRR@10       | 0.0868     | 0.0958       | 0.1084       | 0.1052      
+TCC@5        | 0.3464     | 0.6136       | 0.7149       | 0.7861      
+TCC@10       | 0.3344     | 0.6068       | 0.7096       | 0.7775      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+========================= MODEL PERFORMANCE (Ep9) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1660     | 0.1748       | 0.1887       | 0.2020      
+Recall@10    | 0.2562     | 0.2966       | 0.3295       | 0.3477      
+MRR@5        | 0.0910     | 0.0920       | 0.1009       | 0.0988      
+MRR@10       | 0.1029     | 0.1082       | 0.1195       | 0.1178      
+TCC@5        | 0.3268     | 0.6068       | 0.7083       | 0.7762      
+TCC@10       | 0.3168     | 0.5894       | 0.6957       | 0.7626      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+========================= MODEL PERFORMANCE (Ep14) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1677     | 0.1872       | 0.1970       | 0.2053      
+Recall@10    | 0.2565     | 0.2941       | 0.3179       | 0.3278      
+MRR@5        | 0.0917     | 0.0990       | 0.1049       | 0.0997      
+MRR@10       | 0.1033     | 0.1129       | 0.1206       | 0.1155      
+TCC@5        | 0.3252     | 0.5995       | 0.7007       | 0.7662      
+TCC@10       | 0.3176     | 0.5904       | 0.6940       | 0.7583      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+========================= MODEL PERFORMANCE (Ep19) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1647     | 0.1798       | 0.1887       | 0.1987      
+Recall@10    | 0.2570     | 0.2966       | 0.3146       | 0.3212      
+MRR@5        | 0.0930     | 0.1016       | 0.1088       | 0.1073      
+MRR@10       | 0.1052     | 0.1169       | 0.1253       | 0.1238      
+TCC@5        | 0.3188     | 0.5925       | 0.6930       | 0.7623      
+TCC@10       | 0.3138     | 0.5832       | 0.6856       | 0.7550      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+>>> Base Model Risk Profile:
+
+========================= MODEL PERFORMANCE (Base) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1647     | 0.1798       | 0.1887       | 0.1987      
+Recall@10    | 0.2570     | 0.2966       | 0.3146       | 0.3212      
+MRR@5        | 0.0930     | 0.1016       | 0.1088       | 0.1073      
+MRR@10       | 0.1052     | 0.1169       | 0.1253       | 0.1238      
+TCC@5        | 0.3188     | 0.5925       | 0.6930       | 0.7623      
+TCC@10       | 0.3138     | 0.5832       | 0.6856       | 0.7550      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+=== Phase 2: Controllable Exposure Strategy ===
+
+[Controllable Step 1/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 1 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S1) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1650     | 0.1848       | 0.1970       | 0.2152      
+Recall@10    | 0.2582     | 0.2983       | 0.3245       | 0.3311      
+MRR@5        | 0.0924     | 0.1004       | 0.1071       | 0.1060      
+MRR@10       | 0.1047     | 0.1152       | 0.1234       | 0.1208      
+TCC@5        | 0.3206     | 0.5932       | 0.6940       | 0.7609      
+TCC@10       | 0.3143     | 0.5832       | 0.6866       | 0.7526      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 2/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 2 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S2) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1674     | 0.1881       | 0.2036       | 0.2219      
+Recall@10    | 0.2572     | 0.2983       | 0.3228       | 0.3311      
+MRR@5        | 0.0929     | 0.1007       | 0.1074       | 0.1079      
+MRR@10       | 0.1047     | 0.1151       | 0.1228       | 0.1218      
+TCC@5        | 0.3217     | 0.5929       | 0.6927       | 0.7616      
+TCC@10       | 0.3142     | 0.5824       | 0.6859       | 0.7546      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 3/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 3 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S3) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1672     | 0.1864       | 0.2020       | 0.2219      
+Recall@10    | 0.2555     | 0.2941       | 0.3212       | 0.3344      
+MRR@5        | 0.0929     | 0.1004       | 0.1061       | 0.1076      
+MRR@10       | 0.1045     | 0.1149       | 0.1219       | 0.1223      
+TCC@5        | 0.3219     | 0.5964       | 0.6957       | 0.7636      
+TCC@10       | 0.3142     | 0.5815       | 0.6828       | 0.7507      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 4/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 4 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S4) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1667     | 0.1864       | 0.2003       | 0.2119      
+Recall@10    | 0.2555     | 0.2900       | 0.3129       | 0.3212      
+MRR@5        | 0.0920     | 0.0998       | 0.1052       | 0.1047      
+MRR@10       | 0.1037     | 0.1136       | 0.1203       | 0.1198      
+TCC@5        | 0.3237     | 0.5977       | 0.6947       | 0.7642      
+TCC@10       | 0.3153     | 0.5825       | 0.6831       | 0.7467      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 5/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 5 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S5) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1659     | 0.1889       | 0.2036       | 0.2119      
+Recall@10    | 0.2543     | 0.2908       | 0.3096       | 0.3311      
+MRR@5        | 0.0916     | 0.1007       | 0.1071       | 0.1069      
+MRR@10       | 0.1032     | 0.1139       | 0.1210       | 0.1226      
+TCC@5        | 0.3240     | 0.5993       | 0.6934       | 0.7629      
+TCC@10       | 0.3150     | 0.5832       | 0.6843       | 0.7477      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 6/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 6 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S6) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1630     | 0.1856       | 0.1987       | 0.2020      
+Recall@10    | 0.2515     | 0.2850       | 0.2997       | 0.3146      
+MRR@5        | 0.0906     | 0.1005       | 0.1081       | 0.1083      
+MRR@10       | 0.1022     | 0.1136       | 0.1217       | 0.1239      
+TCC@5        | 0.3240     | 0.5987       | 0.6930       | 0.7596      
+TCC@10       | 0.3159     | 0.5842       | 0.6836       | 0.7440      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 7/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 7 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S7) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1619     | 0.1814       | 0.1921       | 0.1921      
+Recall@10    | 0.2497     | 0.2825       | 0.3013       | 0.3179      
+MRR@5        | 0.0894     | 0.0973       | 0.1041       | 0.1028      
+MRR@10       | 0.1010     | 0.1107       | 0.1185       | 0.1199      
+TCC@5        | 0.3244     | 0.5992       | 0.6917       | 0.7550      
+TCC@10       | 0.3150     | 0.5811       | 0.6815       | 0.7411      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 8/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 8 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S8) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1624     | 0.1806       | 0.1921       | 0.2020      
+Recall@10    | 0.2494     | 0.2792       | 0.2964       | 0.3212      
+MRR@5        | 0.0887     | 0.0965       | 0.1027       | 0.1023      
+MRR@10       | 0.1001     | 0.1095       | 0.1165       | 0.1179      
+TCC@5        | 0.3254     | 0.5970       | 0.6917       | 0.7517      
+TCC@10       | 0.3151     | 0.5815       | 0.6810       | 0.7401      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 9/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 9 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S9) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1592     | 0.1773       | 0.1887       | 0.1987      
+Recall@10    | 0.2484     | 0.2792       | 0.2980       | 0.3179      
+MRR@5        | 0.0885     | 0.0961       | 0.1034       | 0.1034      
+MRR@10       | 0.1002     | 0.1097       | 0.1178       | 0.1190      
+TCC@5        | 0.3259     | 0.5982       | 0.6897       | 0.7483      
+TCC@10       | 0.3159     | 0.5819       | 0.6808       | 0.7401      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 10/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 10 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S10) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1594     | 0.1773       | 0.1887       | 0.1987      
+Recall@10    | 0.2464     | 0.2784       | 0.2964       | 0.3146      
+MRR@5        | 0.0883     | 0.0965       | 0.1036       | 0.1041      
+MRR@10       | 0.0998     | 0.1100       | 0.1180       | 0.1197      
+TCC@5        | 0.3252     | 0.5983       | 0.6911       | 0.7490      
+TCC@10       | 0.3151     | 0.5792       | 0.6780       | 0.7361      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 11/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 11 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S11) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1594     | 0.1781       | 0.1921       | 0.1987      
+Recall@10    | 0.2451     | 0.2792       | 0.2980       | 0.3179      
+MRR@5        | 0.0879     | 0.0961       | 0.1038       | 0.1054      
+MRR@10       | 0.0993     | 0.1095       | 0.1180       | 0.1216      
+TCC@5        | 0.3247     | 0.5983       | 0.6924       | 0.7536      
+TCC@10       | 0.3141     | 0.5779       | 0.6767       | 0.7334      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 12/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 12 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S12) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1596     | 0.1806       | 0.1937       | 0.2020      
+Recall@10    | 0.2446     | 0.2809       | 0.3063       | 0.3311      
+MRR@5        | 0.0876     | 0.0960       | 0.1023       | 0.1057      
+MRR@10       | 0.0989     | 0.1092       | 0.1172       | 0.1230      
+TCC@5        | 0.3246     | 0.5969       | 0.6894       | 0.7523      
+TCC@10       | 0.3131     | 0.5779       | 0.6753       | 0.7318      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 13/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 13 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S13) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1594     | 0.1790       | 0.1937       | 0.2020      
+Recall@10    | 0.2431     | 0.2784       | 0.3030       | 0.3245      
+MRR@5        | 0.0872     | 0.0950       | 0.1002       | 0.1043      
+MRR@10       | 0.0983     | 0.1082       | 0.1148       | 0.1207      
+TCC@5        | 0.3234     | 0.5957       | 0.6868       | 0.7510      
+TCC@10       | 0.3132     | 0.5780       | 0.6753       | 0.7305      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 14/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 14 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S14) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1599     | 0.1823       | 0.1987       | 0.1987      
+Recall@10    | 0.2436     | 0.2800       | 0.3030       | 0.3245      
+MRR@5        | 0.0863     | 0.0939       | 0.0997       | 0.1029      
+MRR@10       | 0.0974     | 0.1067       | 0.1133       | 0.1197      
+TCC@5        | 0.3236     | 0.5969       | 0.6868       | 0.7503      
+TCC@10       | 0.3127     | 0.5775       | 0.6747       | 0.7278      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 15/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 15 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S15) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1596     | 0.1823       | 0.1937       | 0.1987      
+Recall@10    | 0.2399     | 0.2734       | 0.2964       | 0.3146      
+MRR@5        | 0.0863     | 0.0947       | 0.0983       | 0.1024      
+MRR@10       | 0.0970     | 0.1069       | 0.1120       | 0.1181      
+TCC@5        | 0.3214     | 0.5939       | 0.6877       | 0.7497      
+TCC@10       | 0.3114     | 0.5749       | 0.6704       | 0.7238      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 16/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 16 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S16) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1596     | 0.1823       | 0.1921       | 0.1954      
+Recall@10    | 0.2408     | 0.2751       | 0.2930       | 0.3179      
+MRR@5        | 0.0859     | 0.0944       | 0.0985       | 0.1019      
+MRR@10       | 0.0965     | 0.1065       | 0.1116       | 0.1181      
+TCC@5        | 0.3196     | 0.5927       | 0.6831       | 0.7497      
+TCC@10       | 0.3107     | 0.5755       | 0.6704       | 0.7242      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 17/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 17 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S17) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1581     | 0.1798       | 0.1871       | 0.1887      
+Recall@10    | 0.2383     | 0.2693       | 0.2881       | 0.3146      
+MRR@5        | 0.0854     | 0.0935       | 0.0972       | 0.1003      
+MRR@10       | 0.0960     | 0.1053       | 0.1106       | 0.1173      
+TCC@5        | 0.3186     | 0.5892       | 0.6778       | 0.7444      
+TCC@10       | 0.3092     | 0.5733       | 0.6679       | 0.7228      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 18/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 18 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S18) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1592     | 0.1831       | 0.1921       | 0.1921      
+Recall@10    | 0.2371     | 0.2676       | 0.2897       | 0.3146      
+MRR@5        | 0.0850     | 0.0938       | 0.0980       | 0.1008      
+MRR@10       | 0.0952     | 0.1049       | 0.1106       | 0.1166      
+TCC@5        | 0.3185     | 0.5886       | 0.6785       | 0.7457      
+TCC@10       | 0.3092     | 0.5734       | 0.6666       | 0.7225      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 19/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 19 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S19) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1568     | 0.1806       | 0.1887       | 0.1921      
+Recall@10    | 0.2358     | 0.2693       | 0.2914       | 0.3113      
+MRR@5        | 0.0844     | 0.0929       | 0.0972       | 0.0998      
+MRR@10       | 0.0949     | 0.1045       | 0.1104       | 0.1152      
+TCC@5        | 0.3166     | 0.5844       | 0.6755       | 0.7411      
+TCC@10       | 0.3076     | 0.5699       | 0.6629       | 0.7199      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 20/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 20 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S20) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1564     | 0.1798       | 0.1871       | 0.1921      
+Recall@10    | 0.2330     | 0.2659       | 0.2831       | 0.3079      
+MRR@5        | 0.0845     | 0.0937       | 0.0984       | 0.1034      
+MRR@10       | 0.0946     | 0.1049       | 0.1108       | 0.1183      
+TCC@5        | 0.3175     | 0.5864       | 0.6732       | 0.7391      
+TCC@10       | 0.3079     | 0.5703       | 0.6624       | 0.7185      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 21/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 21 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S21) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1564     | 0.1798       | 0.1838       | 0.1854      
+Recall@10    | 0.2310     | 0.2651       | 0.2815       | 0.3046      
+MRR@5        | 0.0849     | 0.0936       | 0.0959       | 0.0986      
+MRR@10       | 0.0947     | 0.1046       | 0.1085       | 0.1140      
+TCC@5        | 0.3157     | 0.5844       | 0.6712       | 0.7391      
+TCC@10       | 0.3054     | 0.5649       | 0.6566       | 0.7132      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 22/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 22 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S22) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1553     | 0.1790       | 0.1821       | 0.1788      
+Recall@10    | 0.2316     | 0.2668       | 0.2831       | 0.3079      
+MRR@5        | 0.0847     | 0.0939       | 0.0954       | 0.0974      
+MRR@10       | 0.0947     | 0.1051       | 0.1084       | 0.1141      
+TCC@5        | 0.3144     | 0.5826       | 0.6709       | 0.7377      
+TCC@10       | 0.3050     | 0.5640       | 0.6570       | 0.7149      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 23/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...
+>>> Step 23 Risk Profile:
+
+========================= MODEL PERFORMANCE (Control_S23) =========================
+Total Contexts: 6035
+---------------------------------------------------------------------------
+Metric       | Global Avg | Top 20% HD   | Top 10% HD   | Top 5% HD   
+---------------------------------------------------------------------------
+Recall@5     | 0.1554     | 0.1790       | 0.1821       | 0.1854      
+Recall@10    | 0.2312     | 0.2676       | 0.2831       | 0.3046      
+MRR@5        | 0.0847     | 0.0938       | 0.0957       | 0.0994      
+MRR@10       | 0.0946     | 0.1050       | 0.1086       | 0.1147      
+TCC@5        | 0.3131     | 0.5793       | 0.6662       | 0.7311      
+TCC@10       | 0.3032     | 0.5616       | 0.6553       | 0.7129      
+---------------------------------------------------------------------------
+Avg HD (Top 5%): 0.88
+===========================================================================
+
+
+[Controllable Step 24/30]
+[Agent] Analyzing graph structure to select exposure edges...
+[Data] Injecting 6035 controllable exposure edges to break filter bubbles...
+[Data] Successfully updated 6035 sequences. Refreshing dataset tensors...
+Fine-tuning on exposed data...

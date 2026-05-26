@@ -1,0 +1,36 @@
+==================== Training Configuration ====================
+dataset: ML1m
+hiddenSize: 100
+epoch: 20
+batch_size: 32
+lr: 0.001
+lr_dc: 0.1
+lr_dc_step: 3
+l2: 1e-05
+n_layers: 2
+n_heads: 2
+dropout_local: 0.2
+max_len: 200
+mask_prob: 0.2
+validation: False
+valid_portion: 0.1
+patience: 3
+Ib: 2.0
+lambda_b: 0.1
+===============================================================
+Found pre-trained model at checkpoints/sasrec_best_model_ML1m.pth. Loading...
+
+=== Evaluation Phase with Allostatic Regulation ===
+Parameter I_b (Intensity): 2.0
+Parameter Lambda_b (Decay): 0.1
+
+==================== REPORT (I_b=2.0, lambda=0.1) ====================
+Metric          | Base Model   | Allostatic   | Diff      
+------------------------------------------------------------
+MRR@10          | 0.0639       | 0.0485       | -0.0155
+MRR@20          | 0.0702       | 0.0514       | -0.0188
+MRR@5           | 0.0550       | 0.0445       | -0.0105
+Recall@10       | 0.1763       | 0.1051       | -0.0713
+Recall@20       | 0.2689       | 0.1486       | -0.1203
+Recall@5        | 0.1080       | 0.0756       | -0.0325
+============================================================

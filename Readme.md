@@ -84,12 +84,6 @@ To use a different backbone (e.g., BERT4Rec), replace model.py with model_BERT4R
 │   ├── MovieLen/            
 │   └── Steam/               
 ├── figs/                    # Directory for generated figures
-└── src/                     # Main source code
-    ├── baselines/           # Baseline algorithms and comparison models
-    │   ├── Allostatic/     
-    │   ├── HardFilter/      
-    │   ├── Nuge/           
-    │   ├── ReinforceBreak/  
-    │   └── TD-VAE-CF/       
+└── src/                     # Main source code      
     ├── model4Sim/           # online closed-loop evaluation
     └── static_offline/      # offline evaluation

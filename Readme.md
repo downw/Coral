@@ -7,14 +7,12 @@ Recommender systems (RS) may suffer from feedback-driven exposure concentration,
 
 - [Abstract](#abstract)
 
-- [Datasets Preprocessing](#datasets-preprocessing)
+- [Datasets Preprocessing](#datasets)
 - [How to run the model](#quick-start)
 - [Project Structure](#project-structure)
 
 
-
-```
-## <a id="datasets-preprocessing"></a> datasets preprocessing
+## <a id="datasets"></a> datasets preprocessing
 
 Original dataset download links are available in the paper.
 

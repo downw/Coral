@@ -1,4 +1,4 @@
-# Official code for CORAL: Uncertainty-Aware Regulation of Exposure Concentration in Recommender Systems.
+# Code for CORAL: Uncertainty-Aware Regulation of Exposure Concentration in Recommender Systems.
 
 
 ## Abstract

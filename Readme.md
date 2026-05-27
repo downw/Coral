@@ -17,8 +17,7 @@ Recommender systems (RS) may suffer from feedback-driven exposure concentration,
 
 Original dataset download links are available in the paper.
 
-First, run <dataset_name>/Core_filter.ipynb.
-Then, run the processing script for the specific dataset:
+Run the processing script for various datasets:
 ```bash
 python <dataset_name>/processing_Amazon.py
 ```
